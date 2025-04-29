@@ -1,0 +1,45 @@
+{
+  "name": "env-scan",
+  "version": "0.0.1",
+  "description": "Automatically detect and manage environment variables in your codebase",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "env-scan": "./dist/bin/env-scan.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "start": "node dist/bin/env-scan.js"
+  },
+  "keywords": [
+    "env",
+    "environment",
+    "dotenv",
+    "variables",
+    "scanner"
+  ],
+  "author": "psparwez",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "glob": "^10.3.10",
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "typescript": "^5.3.3"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/psparwez/env-scan.git"
+  },
+  "bugs": {
+    "url": "https://github.com/psparwez/env-scan.git/issues"
+  },
+  "homepage": "https://github.com/psparwez/env-scan.git/#readme"
+}
