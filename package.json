@@ -1,6 +1,6 @@
 {
   "name": "env-scan",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Automatically detect and manage environment variables in your codebase",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
