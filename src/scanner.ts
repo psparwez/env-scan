@@ -3,35 +3,25 @@ import * as path from "path";
 import { glob } from "glob";
 
 /**
- * Extracts process.env.VARIABLE_NAME and import.meta.env.VITE_SOME_KEY references from a file's content
+ * Extracts process.env.VARIABLE_NAME, import.meta.env.VITE_SOME_KEY, and env.PORT references from a file's content
  * Handles various formats including direct access and bracket notation
  */
 export function extractEnvVarsFromContent(content: string): string[] {
-  const envVars: string[] = [];
+  const envVarsSet = new Set<string>();
 
-  const processEnvRegex =
-    /process\.env\.([A-Za-z0-9_]+)|process\.env\[['"]([A-Za-z0-9_]+)['"]\]/g;
-
-  const viteEnvRegex =
-    /import\.meta\.env\.([A-Za-z0-9_]+)|import\.meta\.env\[['"]([A-Za-z0-9_]+)['"]\]/g;
+  const combinedRegex =
+    /(?:process\.env|import\.meta\.env|\benv\b)(?:\.([A-Za-z0-9_]+)\b|\[['"]([A-Za-z0-9_]+)['"]\])/g;
 
   let match;
 
-  while ((match = processEnvRegex.exec(content)) !== null) {
+  while ((match = combinedRegex.exec(content)) !== null) {
     const varName = match[1] || match[2];
-    if (varName && !envVars.includes(varName)) {
-      envVars.push(varName);
+    if (varName) {
+      envVarsSet.add(varName);
     }
   }
 
-  while ((match = viteEnvRegex.exec(content)) !== null) {
-    const varName = match[1] || match[2];
-    if (varName && !envVars.includes(varName)) {
-      envVars.push(varName);
-    }
-  }
-
-  return envVars;
+  return Array.from(envVarsSet);
 }
 
 /**
