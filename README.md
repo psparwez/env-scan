@@ -2,6 +2,7 @@
 
 A CLI tool that automatically detects environment variables used in your codebase and manages your `.env` file.
 
+<img  src="./env_s.png" alt="Image" />
 ## Features
 
 - 🔍 Scans your codebase 
